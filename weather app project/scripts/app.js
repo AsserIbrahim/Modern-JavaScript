@@ -25,21 +25,22 @@ const updateUI = (data) => {
     `;
 
     // update the night/day & icon images
-    let timeSrc = null;
-    if(weather.IsDayTime){
-        timeSrc = 'img/day.svg'
-    } else {
-        timeSrc = 'img/night.svg'
-    }
+    const iconSrc = `img/icons/${weather.WeatherIcon}.svg`;
+    icon.setAttribute('src', iconSrc);
+    
+    let timeSrc = weather.IsDayTime ? 'img/day.svg' : 'img/night.svg';
+    // if(weather.IsDayTime){
+    //     timeSrc = 'img/day.svg'
+    // } else {
+    //     timeSrc = 'img/night.svg'
+    // }
     time.setAttribute('src', timeSrc);
 
     // remove the d-none class if present
-
     if (card.classList.contains('d-none')){
         card.classList.remove('d-none')
     }
 };
-
 
 const updateCity = async (city) => {
     const cityDetails = await getCity(city);
